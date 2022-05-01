@@ -1,5 +1,6 @@
+# Text Normalization and G2P
 
-# install
+## Install
 ```
 pip install opencc
 #pip install cntn
@@ -12,7 +13,7 @@ cd g2pW
 pip install .
 ```
 
-# test.py
+## Usage: test.py
 ```
 import argparse
 import re
@@ -46,11 +47,6 @@ def run():
 if __name__ == '__main__':
     run()
 ```
-
-
-
-
-
 
 # g2pW: Mandarin Grapheme-to-Phoneme Converter
 
