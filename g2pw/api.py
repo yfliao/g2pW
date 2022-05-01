@@ -188,6 +188,8 @@ class G2PWConverter:
                     partial_result[i] =  self.style_convert_func(monophonic_chars_dict[char])
                 elif char in self.char_bopomofo_dict:
                     partial_result[i] =  self.style_convert_func(self.char_bopomofo_dict[char][0])
+                else:
+                    partial_result[i] =  char
             partial_results.append(partial_result)
         return texts, query_ids, sent_ids, partial_results
 
