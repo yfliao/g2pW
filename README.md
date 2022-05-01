@@ -1,3 +1,57 @@
+
+# install
+```
+pip install opencc
+#pip install cntn
+pip install pytest-runner -i https://pypi.tuna.tsinghua.edu.cn/simple
+pip install paddlepaddle -i https://mirror.baidu.com/pypi/simple
+pip install pytest-runner -i https://pypi.tuna.tsinghua.edu.cn/simple
+
+git clone https://github.com/yfliao/g2pW
+cd g2pW
+pip install .
+```
+
+# test.py
+```
+import argparse
+import re
+from pathlib import Path
+
+from paddlespeech.t2s.frontend.zh_normalization.text_normlization import TextNormalizer
+from opencc import OpenCC
+from g2pw import G2PWConverter
+from cntn import w2s
+
+def run():
+    tw2sp = OpenCC('tw2sp.json')
+    s2twp = OpenCC('s2twp.json')
+    tnorm = TextNormalizer()
+    g2pw = G2PWConverter(style='pinyin', enable_non_tradional_chinese=True)
+
+    input0 = '上校請技術人員校正FN儀器,用了25年，跟銀行借了320萬元。她出生于86年8月18日（1997/08/18），身高175.3cm'
+    input1 = tw2sp.convert(input0)
+    input2 = tnorm.normalize_sentence(input1)
+ #   input3 = w2s(input2)
+    input4 = s2twp.convert(input2)
+    output1 = g2pw(input4)
+
+    print (input0)
+    print (input1)
+    print (input2)
+#    print (input3)
+    print (input4)
+    print (output1)
+
+if __name__ == '__main__':
+    run()
+```
+
+
+
+
+
+
 # g2pW: Mandarin Grapheme-to-Phoneme Converter
 
 [![Downloads](https://pepy.tech/badge/g2pw)](https://pepy.tech/project/g2pw)[![license](https://img.shields.io/badge/license-Apache%202.0-red)](https://github.com/GitYCC/g2pW/blob/master/LICENSE)
